@@ -1,5 +1,5 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
 const express = require('express')
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const app = express()
 require('dotenv').config();
 const cors = require('cors')
@@ -8,13 +8,7 @@ const port = process.env.port || 5000
 
 // MIDDLEWAREs
 
-app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://gadgetry-7f6df.web.app',
-        'https://gadgetry-7f6df.firebaseapp.com'
-    ],
-}))
+app.use(cors())
 
 app.options('*', cors());
 
