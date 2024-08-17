@@ -14,10 +14,7 @@ app.use(cors({
         'http://localhost:5000',
         'https://gadgetry-7f6df.web.app',
         'https://gadgetry-7f6df.firebaseapp.com'
-        // 'https://book-nest-d0b87.web.app',
-        // 'book-nest-d0b87.firebaseapp.com'
     ],
-    // credentials: true
 }))
 app.use(express.json())
 
@@ -57,7 +54,7 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // Ensures that the client will close when you finish/error
-        await client.close();
+        // await client.close();
     }
 }
 run().catch(console.dir);
