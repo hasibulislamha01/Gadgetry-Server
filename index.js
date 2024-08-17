@@ -11,7 +11,6 @@ const port = process.env.port || 5000
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'http://localhost:5000',
         'https://gadgetry-7f6df.web.app',
         'https://gadgetry-7f6df.firebaseapp.com'
     ],
