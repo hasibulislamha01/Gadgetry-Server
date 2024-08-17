@@ -1,26 +1,26 @@
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+require('dotenv').config()
+const cors = require('cors');
 const app = express()
-require('dotenv').config();
-const cors = require('cors')
-const port = process.env.port || 5000
+const port = process.env.PORT || 5000;
 
 
-// MIDDLEWAREs
-
-app.use(cors())
-
-app.options('*', cors());
+app.use(cors({
+    origin: [
+        'http://localhost:5000',
+        'http://localhost:5173',
+        'https://hasibul-porfolio-server.vercel.app',
+        'https://hasibul-portfolio-dac39.web.app'
+    ]
+}))
 
 app.use(express.json())
 
-
-
-// Mongodb connection
-const username = process.env.DB_USER
+const user = process.env.DB_USER
 const password = process.env.DB_PASS
 
-const uri = `mongodb+srv://${username}:${password}@cluster0.75ieoxq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${user}:${password}@cluster0.75ieoxq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -40,8 +40,8 @@ async function run() {
 
         const gadgetsCollection = client.db('Gadgetry').collection('gadgetsCollection')
 
-        
-        app.get('/gadgets', async(req, res) => {
+
+        app.get('/gadgets', async (req, res) => {
             const result = await gadgetsCollection.find().toArray()
             res.send(result)
         })
